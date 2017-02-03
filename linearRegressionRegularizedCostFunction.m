@@ -4,8 +4,7 @@
 % Note: n in this example is actually n+1, but was labelled n for simplicity (in Octave, indexes start from 1, so theta(1) is actually 
 % theta_0 in common notation).
 
-function cost = regularizedCostFunctionRegression(theta, X, y, lambda)
-  cost = 0;
+function cost = linearRegressionRegularizedCostFunction(theta, X, y, lambda)
   m = length(y);
   n = length(theta);
   sumSquaredError = sum(((X*theta - y).^2),1);
@@ -13,4 +12,4 @@ function cost = regularizedCostFunctionRegression(theta, X, y, lambda)
   thetaToSum = thetaToSum.^2;
   sumReg = lambda * sum(thetaToSum);
   cost = 1/(2*m) * (sumSquaredError + sumReg);
-endfunction
+end

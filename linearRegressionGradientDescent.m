@@ -5,7 +5,7 @@
 % which should converge to an optimal value for theta after a set number of iterations
 % Note: featureNormalize should be applied beforehand on the feature set X (even before the column of 1's is added)
 
-function [theta, J_history] = gradientDescentMulti(X, y, theta, alpha, num_iters)
+function [theta, J_history] = linearRegressionGradientDescent(X, y, theta, alpha, num_iters)
 
   m = length(y); % number of training examples
   J_history = zeros(num_iters, 1);

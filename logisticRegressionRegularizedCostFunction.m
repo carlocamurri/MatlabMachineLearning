@@ -2,7 +2,7 @@
 % for a classification problem using logistic regression
 % with regularization parameter lambda.
 
-function [J, grad] = costFunctionReg(theta, X, y, lambda)
+function [J, grad] = logisticRegressionRegularizedCostFunction(theta, X, y, lambda)
 
   m = length(y);
   n = length(theta);
