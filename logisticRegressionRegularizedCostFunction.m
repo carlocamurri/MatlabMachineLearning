@@ -7,15 +7,10 @@ function [J, grad] = logisticRegressionRegularizedCostFunction(theta, X, y, lamb
   m = length(y);
   n = length(theta);
   
-  J = 0;
-  grad = zeros(size(theta));
-  
-  h = X * theta;
-  h = sigmoid(h);
+  h = sigmoid(X * theta);
   
   J = (1/m) * ((-(y') * log(h)) - (1-y)' * log(1-h)) + ((theta(2:n))' * ones(n-1, 1));
   J = J + ((lambda ./ (2*m)) .* ((theta(2:n, 1) .^ 2)' * ones(n-1, 1)));
   
-  grad = (1/m) .* (X' * (h - y));
-  grad(2:n) = grad(2:n) + (lambda/m) * theta(2:n);
+  grad = (1/m) .* (X' * (h - y)) + (lambda/m) .* ([0; theta(2:n)]);
 end

@@ -13,8 +13,7 @@ function [theta, J_history] = linearRegressionGradientDescent(X, y, theta, alpha
   for iter = 1:num_iters
 
       lambda = X*theta - y;
-      delta = lambda .* ones(size(X));
-      delta = 1/m * sum((delta .* X)', 2);
+      delta = 1/m * sum((X .* lambda)', 2);
       
       theta = theta - alpha * delta;
       

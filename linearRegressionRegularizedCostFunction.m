@@ -1,15 +1,12 @@
 % Function to compute the regularized cost function for a regression problem given a 
 % set of parameters theta, a feature matrix X and output values y.
 % The parameter lambda is the regularization parameter (>0).
-% Note: n in this example is actually n+1, but was labelled n for simplicity (in Octave, indexes start from 1, so theta(1) is actually 
-% theta_0 in common notation).
 
-function cost = linearRegressionRegularizedCostFunction(theta, X, y, lambda)
-  m = length(y);
-  n = length(theta);
-  sumSquaredError = sum(((X*theta - y).^2),1);
-  thetaToSum = theta(2:n);
-  thetaToSum = thetaToSum.^2;
-  sumReg = lambda * sum(thetaToSum);
-  cost = 1/(2*m) * (sumSquaredError + sumReg);
+function [J, grad] = linearRegressionRegularizedCostFunction(theta, X, y, lambda)
+    
+    cost = X * theta - y;
+    J = (1 / (2 * m)) * sum((cost) .^ 2, 1) + (lambda / (2 * m)) * sum(theta(2:end) .^ 2, 1);
+    
+    grad = (1 / m) * sum((X .* cost)', 2) + (lambda / m) * ([0; theta(2:end)]); 
+    
 end
